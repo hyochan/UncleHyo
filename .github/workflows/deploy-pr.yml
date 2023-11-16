@@ -1,0 +1,34 @@
+name: Deploy on PR
+'on': pull_request
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          # token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install modules
+        run: bun install --immutable
+
+      - name: Build web
+        run: bun build:web
+        env:
+          ROOT_URL: ${{ secrets.ROOT_URL }}
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EXPO_STARTER_51A2C }}'
+          projectId: expo-starter-51a2c
+  
