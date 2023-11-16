@@ -29,6 +29,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EXPO_STARTER_51A2C }}'
-          projectId: expo-starter-51a2c
-  
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HYOCHAN_1690F }}'
+          projectId: hyochan-1690f
