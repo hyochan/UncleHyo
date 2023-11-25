@@ -27,9 +27,9 @@ const buildNumber = 1;
 
 export default ({config}: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'dooboo',
-  scheme: 'dooboo',
-  slug: 'dooboo-slug',
+  name: 'hyochan',
+  scheme: 'hyochan',
+  slug: 'hyochan-slug',
   privacy: 'public',
   platforms: ['ios', 'android', 'web'],
   version,
@@ -39,18 +39,8 @@ export default ({config}: ConfigContext): ExpoConfig => ({
     // @ts-ignore
     withAndroidLocalizedName,
     'expo-router',
-    'sentry-expo',
     'expo-tracking-transparency',
     'expo-localization',
-    [
-      'onesignal-expo-plugin',
-      {
-        mode: 'development',
-        smallIcons: ['./assets/ic_stat_onesignal_default.png'],
-        // https://developer.apple.com/account/#/membership
-        // devTeam: '',
-      },
-    ],
   ],
   splash: {
     image: './assets/splash.png',
@@ -66,7 +56,6 @@ export default ({config}: ConfigContext): ExpoConfig => ({
     // requestHeaders: {'expo-channel-name': 'production'},
     // url: '',
   },
-  runtimeVersion: '48.0.0',
   assetBundlePatterns: ['**/*'],
   userInterfaceStyle: 'automatic',
   locales: {
@@ -74,7 +63,7 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   },
   ios: {
     buildNumber: buildNumber.toString(),
-    bundleIdentifier: 'com.dooboolab',
+    bundleIdentifier: 'com.hyochan.dev',
     associatedDomains: [`applinks:${DEEP_LINK_URL}`],
     supportsTablet: true,
     entitlements: {
@@ -99,7 +88,7 @@ export default ({config}: ConfigContext): ExpoConfig => ({
       foregroundImage: './assets/adaptive_icon.png',
       backgroundColor: '#2F2F2F',
     },
-    package: 'io.dooboo',
+    package: 'dev.hyochan',
     intentFilters: [
       {
         action: 'VIEW',
@@ -113,6 +102,6 @@ export default ({config}: ConfigContext): ExpoConfig => ({
       },
     ],
   },
-  description: 'Starter project from dooboo-cli.',
+  description: 'Landing page for hyochan.dev',
   web: {bundler: 'metro'},
 });

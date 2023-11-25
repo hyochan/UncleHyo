@@ -1,9 +1,8 @@
-name: Deploy on merge
+name: Deploy Web on Release
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
   build_and_deploy:
@@ -29,6 +28,7 @@ jobs:
         run: bun build:web
         env:
           ROOT_URL: ${{ secrets.ROOT_URL }}
+          expoProjectId: ${{ secrets.expoProjectId }}
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -36,3 +36,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HYOCHAN_1690F }}'
           channelId: live
           projectId: hyochan-1690f
+

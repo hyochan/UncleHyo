@@ -1,10 +1,10 @@
 import styled, {css} from '@emotion/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Button, SwitchToggle, useDooboo} from 'dooboo-ui';
-import {Stack, useRouter} from 'expo-router';
+import {Typography} from 'dooboo-ui';
+import {Image} from 'expo-image';
+import {Stack} from 'expo-router';
 
+import {IC_HYO} from '../src/icons';
 import {t} from '../src/STRINGS';
-import {AsyncStorageKey} from '../src/utils/constants';
 
 const Container = styled.View`
   background-color: ${({theme}) => theme.bg.basic};
@@ -16,49 +16,26 @@ const Container = styled.View`
 `;
 
 const Content = styled.View`
-  padding: 16px;
+  padding: 16px 16px 80px;
 
+  gap: 16px;
   justify-content: center;
   align-items: center;
 `;
 
 export default function Index(): JSX.Element {
-  const {themeType, changeThemeType} = useDooboo();
-  const {push} = useRouter();
-
   return (
     <Container>
-      <Stack.Screen
-        options={{
-          title: t('HOME'),
-        }}
-      />
+      <Stack.Screen options={{title: 'hyochan.dev'}} />
       <Content>
-        <SwitchToggle
-          isOn={themeType === 'dark'}
-          onPress={() => {
-            const nextTheme = themeType === 'dark' ? 'light' : 'dark';
-            changeThemeType(nextTheme);
-
-            AsyncStorage.setItem(
-              AsyncStorageKey.DarkMode,
-              themeType === 'dark' ? 'false' : 'true',
-            );
-          }}
-        />
-        <Button
-          onPress={() => push('/details')}
+        <Image
+          source={IC_HYO}
           style={css`
-            margin-top: 28px;
-            margin-bottom: 40px;
+            width: 128px;
+            height: 128px;
           `}
-          styles={{
-            text: css`
-              font-family: Pretendard-Bold;
-            `,
-          }}
-          text={t('SEE_DETAILS')}
         />
+        <Typography.Heading2>{t('WELCOME')}!</Typography.Heading2>
       </Content>
     </Container>
   );

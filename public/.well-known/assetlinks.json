@@ -2,8 +2,8 @@
   {
     "relation": ["delegate_permission/handle_all_urls"],
     "target": {
-      "namespace": "dooboo",
-      "package_name": "com.dooboolab",
+      "namespace": "hyochan",
+      "package_name": "dev.hyochan",
       "sha256_cert_fingerprints": [
         ""
       ]
