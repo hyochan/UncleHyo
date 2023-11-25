@@ -27,9 +27,9 @@ const buildNumber = 1;
 
 export default ({config}: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'hyochan',
-  scheme: 'hyochan',
-  slug: 'hyochan-slug',
+  name: 'UncleHyo',
+  scheme: 'uncle-hyo',
+  slug: 'uncle-hyo',
   privacy: 'public',
   platforms: ['ios', 'android', 'web'],
   version,
@@ -41,7 +41,21 @@ export default ({config}: ConfigContext): ExpoConfig => ({
     'expo-router',
     'expo-tracking-transparency',
     'expo-localization',
+    [
+      'expo-font',
+      {
+        fonts: [
+          'node_modules/dooboo-ui/uis/Icon/doobooui.ttf',
+          'node_modules/dooboo-ui/uis/Icon/Pretendard-Bold.otf',
+          'node_modules/dooboo-ui/uis/Icon/Pretendard-Regular.otf',
+          'node_modules/dooboo-ui/uis/Icon/Pretendard-Thin.otf',
+        ],
+      },
+    ],
   ],
+  experiments: {
+    typedRoutes: true,
+  },
   splash: {
     image: './assets/splash.png',
     resizeMode: 'contain',
@@ -49,8 +63,9 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   },
   extra: {
     ROOT_URL: process.env.ROOT_URL,
-    // eas: {projectId: ''},
+    eas: {projectId: '357fc48a-1baa-4bee-a350-87979af55434'},
   },
+  owner: 'dooboolab',
   updates: {
     fallbackToCacheTimeout: 0,
     // requestHeaders: {'expo-channel-name': 'production'},
@@ -58,12 +73,9 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   userInterfaceStyle: 'automatic',
-  locales: {
-    ko: './assets/langs/ios/ko.json',
-  },
   ios: {
     buildNumber: buildNumber.toString(),
-    bundleIdentifier: 'com.hyochan.dev',
+    bundleIdentifier: 'dev.hyochan',
     associatedDomains: [`applinks:${DEEP_LINK_URL}`],
     supportsTablet: true,
     entitlements: {
@@ -85,7 +97,6 @@ export default ({config}: ConfigContext): ExpoConfig => ({
       'USER_FACING_NOTIFICATIONS',
     ],
     adaptiveIcon: {
-      foregroundImage: './assets/adaptive_icon.png',
       backgroundColor: '#2F2F2F',
     },
     package: 'dev.hyochan',
@@ -102,6 +113,6 @@ export default ({config}: ConfigContext): ExpoConfig => ({
       },
     ],
   },
-  description: 'Landing page for hyochan.dev',
-  web: {bundler: 'metro'},
+  description: 'Uncle Hyo GPT',
+  web: {bundler: 'metro', favicon: './assets/favicon.png'},
 });

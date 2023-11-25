@@ -17,13 +17,19 @@ global.__reanimatedWorkletInit = jest.fn();
 
 jest.mock('expo-router');
 jest.mock('@expo/react-native-action-sheet');
-jest.mock('expo-font');
+jest.mock('expo-font', () => {
+  return {useFonts: () => []};
+});
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
 
 jest.mock('react-native-reanimated', () =>
   require('react-native-reanimated/mock'),
 );
+
+jest.mock('react-native-device-info', () => ({
+  getDeviceTypeSync: jest.fn(),
+}));
 
 // const customGlobal: any = global;
 

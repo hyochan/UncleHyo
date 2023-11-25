@@ -1,4 +1,3 @@
 # hyochan.dev
 
-[![CI](https://github.com/dooboolab-community/expo-router-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/dooboolab-community/expo-router-starter/actions/workflows/ci.yml)
-
+[![CI](https://github.com/hyochan/UncleHyo/actions/workflows/ci.yml/badge.svg)](https://github.com/hyochan/UncleHyo/actions/workflows/ci.yml)

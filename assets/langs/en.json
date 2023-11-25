@@ -1,3 +1,16 @@
 {
-  "WELCOME": "Welcome"
+  "APP_NAME": "UncleHyo",
+  "INTRO": "How can I help you today?",
+  "MESSAGE_UNCLE_HYO": "Message UncleHyo",
+  "MESSAGE_UNCLE_HYO_HINT": "UncleHyo can make mistakes. Consider checking important information.",
+  "ERR_OCCURRED": "An error occurred. Please try again later.",
+  "YES": "Yes",
+  "NO": "No",
+  "OK": "OK",
+  "CANCEL": "Cancel",
+  "TAKE_A_PICTURE": "Take a picture",
+  "SELECT_FROM_ALBUM": "Select from album",
+  "PERMISSION_GRANT_CAMERA": "Please grant camera permission to take pictures.",
+  "UPLOAD_LIMIT_NOTICE": "You can only upload %{count} files at a time",
+  "IMAGE": "Image"
 }

@@ -1,23 +1,19 @@
 import {useEffect, useState} from 'react';
 import type {ColorSchemeName} from 'react-native';
-import {Platform, useColorScheme} from 'react-native';
+import {useColorScheme} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {KeyboardProvider} from 'react-native-keyboard-controller';
 import {dark, light} from '@dooboo-ui/theme';
 import styled, {css} from '@emotion/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Icon, SwitchToggle, useDooboo} from 'dooboo-ui';
-import CustomPressable from 'dooboo-ui/uis/CustomPressable';
+import {useDooboo} from 'dooboo-ui';
 import StatusBarBrightness from 'dooboo-ui/uis/StatusbarBrightness';
-import {SplashScreen, Stack, useRouter} from 'expo-router';
+import {Drawer} from 'expo-router/drawer';
+import * as SplashScreen from 'expo-splash-screen';
 import * as SystemUI from 'expo-system-ui';
 
 import RootProvider from '../src/providers';
-import {
-  AsyncStorageKey,
-  COMPONENT_WIDTH,
-  delayPressIn,
-  WEB_URL,
-} from '../src/utils/constants';
+import {AsyncStorageKey, COMPONENT_WIDTH} from '../src/utils/constants';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,8 +32,7 @@ const Content = styled.View`
 `;
 
 function Layout(): JSX.Element | null {
-  const {assetLoaded, theme, themeType, changeThemeType} = useDooboo();
-  const {back, replace} = useRouter();
+  const {assetLoaded, theme} = useDooboo();
 
   useEffect(() => {
     if (assetLoaded) {
@@ -52,68 +47,32 @@ function Layout(): JSX.Element | null {
   return (
     <Container>
       <Content>
-        <Stack
+        <Drawer
           screenOptions={{
-            headerStyle: {
-              backgroundColor: theme.bg.basic,
-              // @ts-ignore //? Works on web
-              borderBottomColor: theme.text.disabled,
-            },
+            headerStyle: {backgroundColor: theme.bg.basic},
             headerTintColor: theme.text.label,
             headerTitleStyle: {
-              fontFamily: 'Pretendard-Bold',
               fontWeight: 'bold',
               color: theme.text.basic,
             },
-            headerLeft: ({canGoBack}) =>
-              canGoBack && (
-                <CustomPressable
-                  delayHoverIn={delayPressIn}
-                  hitSlop={{top: 8, left: 8, right: 8, bottom: 8}}
-                  onPress={() =>
-                    canGoBack
-                      ? back()
-                      : Platform.OS === 'web'
-                      ? (window.location.href = WEB_URL)
-                      : replace('/')
-                  }
-                  style={
-                    Platform.OS === 'web'
-                      ? css`
-                          padding: 8px;
-                          border-radius: 48px;
-                        `
-                      : css`
-                          padding: 8px;
-                          border-radius: 48px;
-                          margin-left: -8px;
-                        `
-                  }
-                >
-                  <Icon name="CaretLeft" size={24} />
-                </CustomPressable>
-              ),
-            headerRight: () => (
-              <SwitchToggle
-                isOn={themeType === 'dark'}
-                onPress={() => {
-                  const nextTheme = themeType === 'dark' ? 'light' : 'dark';
-                  AsyncStorage.setItem(
-                    AsyncStorageKey.DarkMode,
-                    themeType === 'dark' ? 'false' : 'true',
-                  );
-                  changeThemeType(nextTheme);
-                }}
-                size="small"
-                style={css`
-                  margin-right: 16px;
-                `}
-              />
-            ),
+            drawerStyle: {
+              backgroundColor: theme.bg.paper,
+            },
           }}
         >
-          {/* Note: Only modals are written here.  */}
-        </Stack>
+          <Drawer.Screen
+            name="index"
+            options={{
+              title: 'Home',
+            }}
+          />
+          <Drawer.Screen
+            name="picture"
+            options={{
+              drawerItemStyle: {display: 'none'},
+            }}
+          />
+        </Drawer>
       </Content>
     </Container>
   );
@@ -155,10 +114,10 @@ export default function RootLayout(): JSX.Element | null {
       `}
     >
       <RootProvider initialThemeType={localThemeType as ColorSchemeName}>
-        <>
+        <KeyboardProvider>
           <StatusBarBrightness />
           <Layout />
-        </>
+        </KeyboardProvider>
       </RootProvider>
     </GestureHandlerRootView>
   );
