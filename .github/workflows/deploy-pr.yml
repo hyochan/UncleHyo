@@ -23,9 +23,8 @@ jobs:
 
       - name: Build web
         run: bun build:web
-        env:
-          ROOT_URL: ${{ secrets.ROOT_URL }}
-          expoProjectId: ${{ secrets.expoProjectId }}
+        # env:
+        #   ROOT_URL: ${{ secrets.ROOT_URL }}
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
