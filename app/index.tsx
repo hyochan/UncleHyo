@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
+import {startTransition, useEffect, useRef, useState} from 'react';
 import {Platform, Pressable} from 'react-native';
 import {
   KeyboardAvoidingView,
@@ -17,6 +17,7 @@ import {Image} from 'expo-image';
 import type {ImagePickerAsset} from 'expo-image-picker';
 import {Stack} from 'expo-router';
 
+import {useChatApi} from '../src/hooks/useApis';
 import {IC_ICON} from '../src/icons';
 import {t} from '../src/STRINGS';
 import ChatInput from '../src/uis/ChatInput';
@@ -50,6 +51,7 @@ export default function Index(): JSX.Element {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const listRef = useRef<FlashList<ChatMessage>>(null);
   const marginTopValue = useSharedValue(EMPTY_CONTENT_MARGIN_TOP);
+  const {triggerSendMessage, isMutatingSendMessage} = useChatApi();
 
   useEffect(() => {
     const hide = KeyboardEvents.addListener('keyboardWillHide', () => {
@@ -79,10 +81,27 @@ export default function Index(): JSX.Element {
   }, [chatMessages.length, marginTopValue]);
 
   const animatedStyle = useAnimatedStyle(() => {
-    return {
-      marginTop: marginTopValue.value,
-    };
+    return {marginTop: marginTopValue.value};
   });
+
+  const sendChatMessage = async (): Promise<void> => {
+    const result = await triggerSendMessage({
+      histories: chatMessages,
+      message,
+      sysMessage: '',
+    });
+
+    startTransition(() => {
+      setChatMessages((prevMessages) => [
+        {
+          message,
+          answer: result.message,
+        },
+        ...prevMessages,
+      ]);
+      setMessage('');
+    });
+  };
 
   return (
     <>
@@ -148,7 +167,8 @@ export default function Index(): JSX.Element {
         <ChatInput
           assets={assets}
           canUploadImage={false}
-          createChatMessage={() => console.log('createChatMessage')}
+          createChatMessage={sendChatMessage}
+          loading={isMutatingSendMessage}
           message={message}
           setAssets={setAssets}
           setMessage={(txt) => {
@@ -165,7 +185,6 @@ export default function Index(): JSX.Element {
               padding-bottom: 2px;
             `,
           }}
-          // loading={isInFlight}
         />
       </KeyboardContainer>
     </>
