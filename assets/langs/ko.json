@@ -1,16 +1,17 @@
 {
   "APP_NAME": "효 삼촌",
+  "CANCEL": "취소",
+  "ERR_OCCURRED": "오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+  "HOME": "홈",
+  "IMAGE": "이미지",
   "INTRO": "오늘 어떻게 도와드릴까요?",
   "MESSAGE_UNCLE_HYO": "효 삼촌에게 메시지 보내기",
   "MESSAGE_UNCLE_HYO_HINT": "효 삼촌은 실수를 할 수 있습니다. 중요한 정보는 확인해보세요.",
-  "ERR_OCCURRED": "오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
-  "YES": "예",
   "NO": "아니오",
   "OK": "확인",
-  "CANCEL": "취소",
-  "TAKE_A_PICTURE": "촬영하기",
-  "SELECT_FROM_ALBUM": "사진첩에서 선택하기",
   "PERMISSION_GRANT_CAMERA": "촬영을 위해 카메라 권한을 부여해주세요.",
+  "SELECT_FROM_ALBUM": "사진첩에서 선택하기",
+  "TAKE_A_PICTURE": "촬영하기",
   "UPLOAD_LIMIT_NOTICE": "한 번에 %{count}개의 파일만 업로드할 수 있습니다.",
-  "IMAGE": "이미지"
+  "YES": "예"
 }

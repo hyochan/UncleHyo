@@ -13,6 +13,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as SystemUI from 'expo-system-ui';
 
 import RootProvider from '../src/providers';
+import {t} from '../src/STRINGS';
 import {AsyncStorageKey, COMPONENT_WIDTH} from '../src/utils/constants';
 
 SplashScreen.preventAutoHideAsync();
@@ -63,7 +64,7 @@ function Layout(): JSX.Element | null {
           <Drawer.Screen
             name="index"
             options={{
-              title: 'Home',
+              title: t('HOME'),
             }}
           />
           <Drawer.Screen
