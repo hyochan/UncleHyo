@@ -2,9 +2,18 @@ import useSWRMutation from 'swr/mutation';
 
 const sendMessage = (
   url: string,
-  {arg}: {arg: {message: string; histories: {}[]; sysMessage?: string}},
+  {
+    arg,
+  }: {
+    arg: {
+      message: string;
+      histories: {}[];
+      sysMessage?: string;
+      timestamp?: number;
+    };
+  },
 ): Promise<{message: string}> =>
-  fetch(url, {
+  fetch(`${url}?timestamp=${arg.timestamp}`, {
     headers: {'Content-Type': 'application/json'},
     method: 'POST',
     body: JSON.stringify(arg),
@@ -19,7 +28,14 @@ export function useChatApi(): {
   isMutatingSendMessage: boolean;
 } {
   const {trigger: triggerSendMessage, isMutating: isMutatingSendMessage} =
-    useSWRMutation('https://gpt.hyochan.dev/api/chat', sendMessage);
+    useSWRMutation('https://gpt.hyochan.dev/api/chat', sendMessage, {});
 
-  return {triggerSendMessage, isMutatingSendMessage};
+  return {
+    triggerSendMessage: (arg) =>
+      triggerSendMessage({
+        ...arg,
+        timestamp: Date.now(),
+      }),
+    isMutatingSendMessage,
+  };
 }
