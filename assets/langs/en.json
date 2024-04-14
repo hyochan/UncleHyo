@@ -12,6 +12,7 @@
   "PERMISSION_GRANT_CAMERA": "Please grant camera permission to take pictures.",
   "SELECT_FROM_ALBUM": "Select from album",
   "TAKE_A_PICTURE": "Take a picture",
+  "UNCLE_HYO": "Uncle Hyo",
   "UPLOAD_LIMIT_NOTICE": "You can only upload %{count} files at a time",
   "YES": "Yes"
 }
