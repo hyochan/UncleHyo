@@ -2,4 +2,8 @@
 
 [![CI](https://github.com/hyochan/UncleHyo/actions/workflows/ci.yml/badge.svg)](https://github.com/hyochan/UncleHyo/actions/workflows/ci.yml)
 
-`UncleHyo`는 좋은 삼촌이 조카들과 대화하는 모습을 모티브로 한 컨셉 GPT 채팅 앱입니다. 이 앱은 가족 간의 따뜻하고 친밀한 대화를 장려하는 디자인으로 구현되었습니다. 자세한 정보는 [hyochan.dev](https://hyochan.dev) 웹사이트에서 확인할 수 있습니다.
+`UncleHyo` is a concept GPT chat app inspired by the image of a kind uncle having conversations with his nieces and nephews. This app is designed to encourage warm and intimate conversations among family members. For more information, you can visit the [hyochan.dev](https://hyochan.dev) website.
+
+## Demo
+
+https://github.com/hyochan/UncleHyo/assets/27461460/c354524e-b2ec-4a85-8978-7ff86010118f
