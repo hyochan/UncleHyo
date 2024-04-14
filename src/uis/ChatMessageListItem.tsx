@@ -5,6 +5,7 @@ import styled, {css} from '@emotion/native';
 import {Typography, useDooboo} from 'dooboo-ui';
 
 import {IC_ICON} from '../icons';
+import {t} from '../STRINGS';
 import {openURL} from '../utils/common';
 import type {ChatMessage} from '../utils/types';
 
@@ -47,7 +48,7 @@ function AIChatMessageListItem({answer}: {answer: string}): JSX.Element {
             margin-right: 12px;
           `}
         >
-          Uncle Hyo
+          {t('UNCLE_HYO')}
         </Typography.Body2>
         <MessageContainer>
           <ParsedText
@@ -64,6 +65,7 @@ function AIChatMessageListItem({answer}: {answer: string}): JSX.Element {
             ]}
             selectable
             style={css`
+              margin-bottom: 8px;
               background-color: ${theme.bg.paper};
               color: ${theme.text.basic};
               font-size: 14px;
