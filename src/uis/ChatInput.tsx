@@ -151,6 +151,18 @@ export default function ChatInput({
             styles?.input,
           ],
         }}
+        textInputProps={{
+          onKeyPress: ({nativeEvent}) => {
+            if (Platform.OS === 'web') {
+              // @ts-ignore
+              if (nativeEvent.key === 'Enter' && !nativeEvent.shiftKey) {
+                createChatMessage();
+
+                return;
+              }
+            }
+          },
+        }}
         value={message}
       />
       {assets.length > 0 ? (
