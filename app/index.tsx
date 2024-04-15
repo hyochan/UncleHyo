@@ -1,4 +1,4 @@
-import {startTransition, useEffect, useRef, useState} from 'react';
+import {startTransition, useCallback, useEffect, useRef, useState} from 'react';
 import {Platform, Pressable} from 'react-native';
 import {
   KeyboardAvoidingView,
@@ -84,7 +84,7 @@ export default function Index(): JSX.Element {
     return {marginTop: marginTopValue.value};
   });
 
-  const sendChatMessage = async (): Promise<void> => {
+  const sendChatMessage = useCallback(async (): Promise<void> => {
     const result = await triggerSendMessage({
       histories: chatMessages,
       message,
@@ -101,7 +101,7 @@ export default function Index(): JSX.Element {
       ]);
       setMessage('');
     });
-  };
+  }, [chatMessages, message, triggerSendMessage]);
 
   return (
     <>

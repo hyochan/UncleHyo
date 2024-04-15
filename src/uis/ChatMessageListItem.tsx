@@ -66,13 +66,17 @@ function AIChatMessageListItem({answer}: {answer: string}): JSX.Element {
             selectable
             style={css`
               margin-bottom: 8px;
+              text-align: left;
               background-color: ${theme.bg.paper};
               color: ${theme.text.basic};
               font-size: 14px;
+              line-height: 22px;
               padding: ${Platform.select({
-                native: '12px;',
-                web: '12px 6px;',
+                native: '6px 12px;',
+                web: '6px;',
               })};
+              /* For web */
+              text-indent: -4px;
             `}
           >
             {answer}
@@ -117,10 +121,13 @@ function HumanChatMessageListItem({message}: {message: string}): JSX.Element {
           style={css`
             color: ${theme.text.contrast};
             font-size: 14px;
+            line-height: 22px;
             padding: ${Platform.select({
-              native: '12px;',
-              web: '12px 6px;',
+              native: '6px 12px;',
+              web: '6px;',
             })};
+            /* For web */
+            text-indent: -4px;
           `}
         >
           {message}

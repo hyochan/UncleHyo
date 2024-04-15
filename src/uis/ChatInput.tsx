@@ -49,6 +49,7 @@ export default function ChatInput({
   const {openImagePicker} = useImagePickerActionSheet();
   const {theme, snackbar} = useDooboo();
   const {setEnabled} = useKeyboardController();
+  const disabled = loading || (!message && !assets.length);
 
   return (
     <Container style={style}>
@@ -117,13 +118,18 @@ export default function ChatInput({
                 ) : null}
                 <CustomPressable
                   delayHoverIn={delayPressIn}
+                  disabled={disabled}
                   onPress={createChatMessage}
                   style={css`
                     padding: 6px;
                     border-radius: 99px;
                   `}
                 >
-                  <Icon name="PaperPlaneRight" size={22} />
+                  <Icon
+                    color={!disabled ? theme.text.basic : theme.text.disabled}
+                    name="PaperPlaneRight"
+                    size={22}
+                  />
                 </CustomPressable>
               </>
             )}
@@ -131,7 +137,6 @@ export default function ChatInput({
         }
         multiline
         onChangeText={setMessage}
-        onSubmitEditing={createChatMessage}
         placeholder={`${t('MESSAGE_UNCLE_HYO')}...`}
         styles={{
           container: [
