@@ -1,5 +1,5 @@
 import type {StyleProp, ViewStyle} from 'react-native';
-import {View} from 'react-native';
+import {Platform, View} from 'react-native';
 import ParsedText from 'react-native-parsed-text';
 import styled, {css} from '@emotion/native';
 import {Typography, useDooboo} from 'dooboo-ui';
@@ -69,7 +69,10 @@ function AIChatMessageListItem({answer}: {answer: string}): JSX.Element {
               background-color: ${theme.bg.paper};
               color: ${theme.text.basic};
               font-size: 14px;
-              padding: 12px;
+              padding: ${Platform.select({
+                native: '12px;',
+                web: '12px 6px;',
+              })};
             `}
           >
             {answer}
@@ -114,7 +117,10 @@ function HumanChatMessageListItem({message}: {message: string}): JSX.Element {
           style={css`
             color: ${theme.text.contrast};
             font-size: 14px;
-            padding: 12px;
+            padding: ${Platform.select({
+              native: '12px;',
+              web: '12px 6px;',
+            })};
           `}
         >
           {message}
