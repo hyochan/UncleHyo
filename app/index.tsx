@@ -87,6 +87,10 @@ export default function Index(): JSX.Element {
   });
 
   const sendChatMessage = useCallback(async (): Promise<void> => {
+    if (isMutatingSendMessage) {
+      return;
+    }
+
     const result = await triggerSendMessage({
       histories: chatMessages,
       message,
@@ -103,7 +107,7 @@ export default function Index(): JSX.Element {
       ]);
       setMessage('');
     });
-  }, [chatMessages, message, triggerSendMessage]);
+  }, [chatMessages, isMutatingSendMessage, message, triggerSendMessage]);
 
   return (
     <>
