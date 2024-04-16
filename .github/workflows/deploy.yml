@@ -29,6 +29,20 @@ jobs:
         # env:
         #   ROOT_URL: ${{ secrets.ROOT_URL }}
 
+      # Meta tags are not updatable from Expo SDK 49 so add below step
+      - name: Inject Meta Tags
+        run: |
+          sed -i '/<\/head>/i \
+          <meta property="og:image" content="https://hyochan.dev/icon.png" />\n\
+          <meta property="og:type" content="website" />\n\
+          <meta property="og:url" content="https://hyochan.dev" />\n\
+          <meta property="og:description" content="Uncle Hyo GPT" />\n\
+          <meta property="og:title" content="UncleHyo" />\n\
+          <meta property="twitter:card" content="UncleHyo" />\n\
+          <meta property="twitter:url" content="https://hyochan.dev" />\n\
+          <meta property="twitter:title" content="UncleHyo" />\n\
+          <meta property="twitter:description" content="Uncle Hyo GPT" />\n' ./dist/index.html
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
