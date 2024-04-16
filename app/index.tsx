@@ -1,5 +1,5 @@
 import {startTransition, useCallback, useEffect, useRef, useState} from 'react';
-import {Platform, Pressable} from 'react-native';
+import {Platform, Pressable, View} from 'react-native';
 import {
   KeyboardAvoidingView,
   KeyboardEvents,
@@ -12,7 +12,7 @@ import Animated, {
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import styled, {css} from '@emotion/native';
 import {FlashList} from '@shopify/flash-list';
-import {Icon, Typography} from 'dooboo-ui';
+import {Icon, Typography, useDooboo} from 'dooboo-ui';
 import {Image} from 'expo-image';
 import type {ImagePickerAsset} from 'expo-image-picker';
 import {Stack} from 'expo-router';
@@ -22,6 +22,7 @@ import {IC_ICON} from '../src/icons';
 import {t} from '../src/STRINGS';
 import ChatInput from '../src/uis/ChatInput';
 import ChatMessageListItem from '../src/uis/ChatMessageListItem';
+import {openURL} from '../src/utils/common';
 import type {ChatMessage} from '../src/utils/types';
 
 const KeyboardContainer = styled(KeyboardAvoidingView)`
@@ -46,6 +47,7 @@ const KEYBOARD_ANIMATION_DURATION = 300;
 
 export default function Index(): JSX.Element {
   const {bottom} = useSafeAreaInsets();
+  const {theme} = useDooboo();
   const [message, setMessage] = useState('');
   const [assets, setAssets] = useState<ImagePickerAsset[]>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
@@ -107,14 +109,26 @@ export default function Index(): JSX.Element {
     <>
       <Stack.Screen
         options={{
-          headerTitle: 'UncleHyo',
+          headerTitle: t('APP_NAME'),
           headerRight: () => (
             <Pressable
+              onPress={() => {
+                openURL('https://github.com/hyochan/UncleHyo');
+              }}
               style={css`
                 padding: 12px;
               `}
             >
-              <Icon name="PencilSimple" size={22} />
+              <View
+                style={css`
+                  border-radius: 24px;
+                  border-width: 1px;
+                  border-color: ${theme.text.basic};
+                  padding: 4px;
+                `}
+              >
+                <Icon color={theme.text.basic} name="GithubLogo" size={20} />
+              </View>
             </Pressable>
           ),
         }}
