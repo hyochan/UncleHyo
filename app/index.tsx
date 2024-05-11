@@ -131,7 +131,7 @@ export default function Index(): JSX.Element {
                   padding: 4px;
                 `}
               >
-                <Icon color={theme.text.basic} name="GithubLogo" size={20} />
+                <Icon color={theme.text.basic} name="GithubLogo" size={12} />
               </View>
             </Pressable>
           ),
