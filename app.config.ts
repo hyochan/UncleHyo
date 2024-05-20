@@ -36,6 +36,13 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   orientation: 'default',
   icon: './assets/icon.png',
   plugins: [
+    [
+      'expo-build-properties',
+      {
+        ios: {newArchEnabled: true},
+        android: {newArchEnabled: true},
+      },
+    ],
     // @ts-ignore
     withAndroidLocalizedName,
     'expo-router',
