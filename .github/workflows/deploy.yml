@@ -33,13 +33,13 @@ jobs:
       - name: Inject Meta Tags
         run: |
           sed -i '/<\/head>/i \
-          <meta property="og:image" content="https://hyochan.dev/icon.png" />\n\
+          <meta property="og:image" content="https://unclehyo.dooboolab.com/icon.png" />\n\
           <meta property="og:type" content="website" />\n\
-          <meta property="og:url" content="https://hyochan.dev" />\n\
+          <meta property="og:url" content="https://unclehyo.dooboolab.com" />\n\
           <meta property="og:description" content="Uncle Hyo GPT" />\n\
           <meta property="og:title" content="UncleHyo" />\n\
           <meta property="twitter:card" content="UncleHyo" />\n\
-          <meta property="twitter:url" content="https://hyochan.dev" />\n\
+          <meta property="twitter:url" content="https://unclehyo.dooboolab.com" />\n\
           <meta property="twitter:title" content="UncleHyo" />\n\
           <meta property="twitter:description" content="Uncle Hyo GPT" />\n' ./dist/index.html
 

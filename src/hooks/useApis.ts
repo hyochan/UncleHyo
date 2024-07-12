@@ -28,7 +28,11 @@ export function useChatApi(): {
   isMutatingSendMessage: boolean;
 } {
   const {trigger: triggerSendMessage, isMutating: isMutatingSendMessage} =
-    useSWRMutation('https://gpt.hyochan.dev/api/chat', sendMessage, {});
+    useSWRMutation(
+      'https://unclehyo-gpt.dooboolab.com/api/chat',
+      sendMessage,
+      {},
+    );
 
   return {
     triggerSendMessage: (arg) =>

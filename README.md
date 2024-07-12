@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/hyochan/UncleHyo/actions/workflows/ci.yml/badge.svg)](https://github.com/hyochan/UncleHyo/actions/workflows/ci.yml)
 
-`UncleHyo` is a concept GPT chat app inspired by the image of a kind uncle having conversations with his nieces and nephews. This app is designed to encourage warm and intimate conversations among family members. For more information, you can visit the [hyochan.dev](https://hyochan.dev) website.
+`UncleHyo` is a concept GPT chat app inspired by the image of a kind uncle having conversations with his nieces and nephews. This app is designed to encourage warm and intimate conversations among family members. For more information, you can visit the [unclehyo.dooboolab.com](https://unclehyo.dooboolab.com) website.
 
 ## Demo
 
